@@ -53,13 +53,13 @@ public class CommentsDao extends Dao<Comments> {
                 pstmt.setObject(1, comments.getComentarios(), Types.VARCHAR);
             }
             if (comments.getBook().getId() != null) {
-                pstmt.setObject(4, comments.getBook().getId(), Types.BIGINT);
+                pstmt.setObject(2, comments.getBook().getId(), Types.BIGINT);
             }
             if (comments.getReader().getId() != null) {
-                pstmt.setObject(4, comments.getReader().getId(), Types.BIGINT);
+                pstmt.setObject(3, comments.getReader().getId(), Types.BIGINT);
             }
             if (comments.getId() != null) {
-                pstmt.setObject(5, comments.getId(), Types.BIGINT);
+                pstmt.setObject(4, comments.getId(), Types.BIGINT);
             }
         } catch (Exception ex) {
             System.out.println("Exception in ComposeSave or Update " + ex);

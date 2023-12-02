@@ -22,7 +22,8 @@ public class Exemplary extends Entity {
         setDisponivel(null);
     }
 
-    public Exemplary(Long id, Boolean disponivel, Book book, Emprestimo emprestimo) {
+    public Exemplary(Long id, Boolean disponivel, Book book, Emprestimo emprestimo) throws Exception {
+        
 //        this.id = id;
         setId(id);
 
