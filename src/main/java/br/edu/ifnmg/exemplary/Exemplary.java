@@ -12,50 +12,61 @@ import br.edu.ifnmg.entity.Entity;
  *
  * @author joaok
  */
-public class Exemplary extends Entity{
+public class Exemplary extends Entity {
+
     private Book book;
     private Emprestimo emprestimo;
     private Boolean disponivel;
 
     public Exemplary() {
-        setEnabled(null);
+        setDisponivel(null);
     }
-    
-    
-    
 
     public Exemplary(Long id, Boolean disponivel, Book book, Emprestimo emprestimo) {
-        this.id = id;
-        this.livro = livro;
-        this.emprestado = false;
+//        this.id = id;
+        setId(id);
+
+//        this.book = book;
+        setBook(book);
+
+//        this.emprestimo = emprestimo;
+        setEmprestimo(emprestimo);
+
+//        this.disponivel = false;
+        setDisponivel(disponivel);
     }
 
-    public int getId() {
-        return id;
+    public Book getBook() {
+        return book;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public Emprestimo getEmprestimo() {
+        return emprestimo;
     }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+    public void setEmprestimo(Emprestimo emprestimo) {
+        this.emprestimo = emprestimo;
     }
 
-    public boolean isEmprestado() {
-        return emprestado;
+    public Boolean getDisponivel() {
+        return disponivel;
     }
 
-    public void setEmprestado(boolean emprestado) {
-        this.emprestado = emprestado;
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
-    public boolean estaDisponivel() {
-        return !emprestado;
+    @Override
+    public String toString() {
+        return "Exemplary{"
+                + "book=" + book
+                + ", emprestimo=" + emprestimo
+                + ", disponivel=" + disponivel
+                + '}';
     }
 
 }
