@@ -6,7 +6,6 @@ import br.edu.ifnmg.credential.Credential;
 import br.edu.ifnmg.role.Role;
 import br.edu.ifnmg.user.User;
 //import javax.management.relation.Role;
-
 public class Librarian extends User{
 
     public Librarian(){
