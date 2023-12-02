@@ -21,8 +21,11 @@ public class Comments extends Entity {
     public Comments() {
     }
 
-    public Comments(String comentarios) {
-
+    public Comments(Long id, String comentarios) throws Exception {
+        
+//        this.id = id;
+        setId(id);
+        
 //        this.comentarios = comentarios;
         setComentarios(comentarios);
     }
