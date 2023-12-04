@@ -10,8 +10,12 @@ package br.edu.ifnmg.dataPersistencia;
 public class Data_Persistencia {
 
     public static void main(String[] args) {
-        Tests.Administrador();
-        Tests.Bibliotecario();
-        Tests.Leitor();
+//        Tests.Administrador();
+//        Tests.Bibliotecario();
+//        Tests.Leitor();
+///////////////////////////////////////
+//        Tests.Livro();
+//        Tests.TdsLivros();
+//        Tests.DeleteLivros();
     }
 }

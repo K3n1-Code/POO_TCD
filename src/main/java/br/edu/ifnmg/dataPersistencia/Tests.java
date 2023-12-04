@@ -2,6 +2,8 @@ package br.edu.ifnmg.dataPersistencia;
 
 import br.edu.ifnmg.adm.Adm;
 import br.edu.ifnmg.adm.AdmDao;
+import br.edu.ifnmg.book.Book;
+import br.edu.ifnmg.book.BookDao;
 import java.time.LocalDate;
 
 import br.edu.ifnmg.credential.Credential;
@@ -101,6 +103,50 @@ public class Tests {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void Livro() {
+        Long book1Id = null;
+
+        try {
+            Book book1 = new Book(
+                    null, // id
+                    "A cabana", // title
+                    "J.R.R. Tolkien", // author
+                    (short) 240, // pages
+                    (short) 2008, // year
+                    (byte) 1 // edition
+            );
+
+            System.out.println("Livro 1 incluido: " + book1);
+
+            book1Id = new BookDao().saveOrUpdate(book1);
+            book1.setId(book1Id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void TdsLivros() {
+        try {
+            BookDao BuscaBooks = new BookDao();
+            System.out.println("Todos Livros: ");
+            for (Book e : BuscaBooks.findAll()) {
+                System.out.println(">> " + e);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void DeleteLivros() {
+        try {
+            String tituloParaDeletar = "A Cabana";
+            new BookDao().deleteByTitle(tituloParaDeletar);
+            System.out.println("Livro '" + tituloParaDeletar + "' deletado com sucesso!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
