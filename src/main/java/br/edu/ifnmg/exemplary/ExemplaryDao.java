@@ -23,17 +23,17 @@ public class ExemplaryDao extends Dao<Exemplary> {
 
     @Override
     public String getSaveStatement() {
-        return "insert into " + TABLE + " (book_id, emprestimo_id, available) values(?,?,?)";
+        return "insert into " + TABLE + " (available, book_id, emprestimo_id) values(?,?,?)";
     }
 
     @Override
     public String getUpdateStatement() {
-        return "update " + TABLE + " set book_id = ?, emprestimo_id = ?, available = ? where id = ?";
+        return "update " + TABLE + " set available = ?, book_id = ?, emprestimo_id = ? where id = ?";
     }
 
     @Override
     public String getFindByIdStatement() {
-        return "select book_id, emprestimo_id, available, id from " + TABLE + " where id = ?";
+        return "select available, book_id, emprestimo_id, id from " + TABLE + " where id = ?";
     }
 
     @Override
@@ -49,14 +49,14 @@ public class ExemplaryDao extends Dao<Exemplary> {
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Exemplary exemplary) {
         try {
+            if (exemplary.getDisponivel()!= null) {
+                pstmt.setObject(1, exemplary.getDisponivel(), Types.BOOLEAN);
+            }
             if (exemplary.getBook().getId() != null) {
-                pstmt.setObject(1, exemplary.getBook().getId(), Types.BIGINT);
+                pstmt.setObject(2, exemplary.getBook().getId(), Types.BIGINT);
             }
             if (exemplary.getEmprestimo().getId() != null) {
-                pstmt.setObject(2, exemplary.getEmprestimo().getId(), Types.BIGINT);
-            }
-            if (exemplary.getDisponivel()!= null) {
-                pstmt.setObject(3, exemplary.getDisponivel(), Types.BOOLEAN);
+                pstmt.setObject(3, exemplary.getEmprestimo().getId(), Types.BIGINT);
             }
             if (exemplary.getId() != null) {
                 pstmt.setObject(4, exemplary.getId(), Types.BIGINT);
@@ -71,11 +71,11 @@ public class ExemplaryDao extends Dao<Exemplary> {
         Exemplary exemplary = null;
         try {
             exemplary = new Exemplary();
+            exemplary.setDisponivel(rs.getBoolean("available"));
             Book book = new BookDao().findById(rs.getLong("book_id"));
             exemplary.setBook(book);
             Emprestimo emprestimo = new EmprestimoDao().findById(rs.getLong("emprestimo_id"));
             exemplary.setEmprestimo(emprestimo);
-            exemplary.setDisponivel(rs.getBoolean("available"));
             exemplary.setId(rs.getLong("id"));
         } catch (Exception ex) {
             System.out.println("Exception in extractObject: " + ex);
