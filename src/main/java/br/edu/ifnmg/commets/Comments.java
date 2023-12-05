@@ -21,13 +21,18 @@ public class Comments extends Entity {
     public Comments() {
     }
 
-    public Comments(Long id, String comentarios) throws Exception {
-        
+    public Comments(Long id, String comentarios, Book book, Reader reader) throws Exception {
 //        this.id = id;
         setId(id);
         
 //        this.comentarios = comentarios;
         setComentarios(comentarios);
+        
+//        this.book = book;
+        setBook(book);
+        
+//        this.reader = reader;
+        setReader(reader);
     }
 
     public String getComentarios() {
