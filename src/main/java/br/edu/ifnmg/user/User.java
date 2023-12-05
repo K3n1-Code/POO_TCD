@@ -2,6 +2,7 @@ package br.edu.ifnmg.user;
 
 import br.edu.ifnmg.credential.Credential;
 import br.edu.ifnmg.entity.Entity;
+import br.edu.ifnmg.librarian.Librarian;
 import br.edu.ifnmg.role.Role;
 
 import java.time.LocalDate;
@@ -36,7 +37,7 @@ public class User extends Entity {
 //        this.setRole(role);
         setRole(role);
     }
-
+    //<editor-fold defaultstate="collapsed" desc="Get and Set">
     public String getName() {
         return name;
     }
@@ -93,6 +94,8 @@ public class User extends Entity {
         this.credential = credential;
     }
 
+//</editor-fold>
+    
     @Override
     public String toString() {
         return "Nome: \"" + this.name 
@@ -101,6 +104,10 @@ public class User extends Entity {
                 + "\", Papel: \"" + this.role.getName()
                 + "\", Credencial: \"" + this.credential.getUsername() 
                 + "\"";
+    }
+
+    public Librarian asLibrarian() {
+        return (Librarian) this;
     }
 
 }

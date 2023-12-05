@@ -5,6 +5,7 @@
 package br.edu.ifnmg.book;
 
 import br.edu.ifnmg.entity.Entity;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,10 +19,12 @@ public class Book
     private Short pages;
     private Short year;
     private Byte edition;
-
+    
+    private static ArrayList<Book> all_books = new ArrayList<>();
+    
     public Book() {
     }
-
+    
     public Book(Long id, String title, String authors, Short pages, Short year,
             Byte edition) throws Exception {
         setId(id);
@@ -42,7 +45,8 @@ public class Book
         setEdition(edition);  // Security problem!
 
     }
-
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public String getTitle() {
         return title;
     }
@@ -114,6 +118,8 @@ public class Book
         this.edition = edition;
     }
 
+//</editor-fold>
+    
     @Override
     public String toString() {
         return "Book{" + "title=" + title

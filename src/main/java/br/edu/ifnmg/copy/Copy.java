@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifnmg.exemplary;
+package br.edu.ifnmg.copy;
 
 import br.edu.ifnmg.book.Book;
 import br.edu.ifnmg.emprestimo.Emprestimo;
@@ -12,39 +12,39 @@ import br.edu.ifnmg.entity.Entity;
  *
  * @author joaok
  */
-public class Exemplary extends Entity {
+public class Copy extends Entity {
 
     private Book book;
     private Emprestimo emprestimo;
     private Boolean disponivel;
 
-    public Exemplary() {
+    public Copy() {
         setDisponivel(null);
     }
 
-    public Exemplary(Long id, Boolean disponivel, Book book, Emprestimo emprestimo) throws Exception {
-        
-//        this.id = id;
+    public Copy(Long id, Boolean disponivel, Book book) throws Exception {   
         setId(id);
-
-//        this.book = book;
         setBook(book);
-
-//        this.emprestimo = emprestimo;
-        setEmprestimo(emprestimo);
-
-//        this.disponivel = false;
+        setEmprestimo(null);
         setDisponivel(disponivel);
     }
-
-    public Book getBook() {
+    
+    public Copy(Long id, Boolean disponivel, Book book, Emprestimo em) throws Exception {   
+        setId(id);
+        setBook(book);
+        setEmprestimo(em);
+        setDisponivel(disponivel);
+    }
+    
+    //<editor-fold defaultstate="collapsed" desc="Get and set">
+        public Book getBook() {
         return book;
     }
 
     public void setBook(Book book) {
         this.book = book;
     }
-
+    
     public Emprestimo getEmprestimo() {
         return emprestimo;
     }
@@ -53,13 +53,15 @@ public class Exemplary extends Entity {
         this.emprestimo = emprestimo;
     }
 
-    public Boolean getDisponivel() {
+    public Boolean isDisponivel() {
         return disponivel;
     }
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+//</editor-fold>
 
     @Override
     public String toString() {

@@ -36,7 +36,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //        
         if (current_cred.getUser().getRole().getName().equals("administrador")) {
             instance.menuVerUsuario.setVisible(true);
-            instance.menuAltUsuario.setVisible(true);
             instance.menuCadUsuario.setVisible(true);
             instance.menuCadLivro.setVisible(true);
             instance.menuLivro.setVisible(true);
@@ -47,7 +46,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         } else if (current_cred.getUser().getRole().getName().equals("bibliotecário")) {
             instance.menuVerUsuario.setVisible(true);
-            instance.menuAltUsuario.setVisible(false);
             instance.menuCadUsuario.setVisible(false);
             instance.menuCadLivro.setVisible(true);
             instance.menuLivro.setVisible(true);
@@ -58,7 +56,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         } else if (current_cred.getUser().getRole().getName().equals("leitor")) {
             instance.menuVerUsuario.setVisible(true);
-            instance.menuAltUsuario.setVisible(false);
             instance.menuCadUsuario.setVisible(false);
             instance.menuCadLivro.setVisible(false);
             instance.menuLivro.setVisible(true);
@@ -89,10 +86,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPasswordField1 = new javax.swing.JPasswordField();
         PanelPrincipal = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         menuUsuario = new javax.swing.JMenu();
         menuVerUsuario = new javax.swing.JMenuItem();
-        menuAltUsuario = new javax.swing.JMenuItem();
         menuCadUsuario = new javax.swing.JMenuItem();
         menuBook = new javax.swing.JMenu();
         menuCadLivro = new javax.swing.JMenuItem();
@@ -101,6 +99,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadEmp = new javax.swing.JMenuItem();
         menuHistoryEmp = new javax.swing.JMenuItem();
         menuAutoEmp = new javax.swing.JMenuItem();
+        menuUsuario1 = new javax.swing.JMenu();
+        menuVerUsuario1 = new javax.swing.JMenuItem();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -112,15 +112,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Quando Leitor, implementar Histórico aqui");
+
+        jLabel2.setText("Quando Biblitecario, mostrar livros aqui :D;  Implementar Classe LivroMenu");
+
         javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
         PanelPrincipal.setLayout(PanelPrincipalLayout);
         PanelPrincipalLayout.setHorizontalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
+            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
+            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(321, Short.MAX_VALUE))
         );
 
         menu.setBackground(new java.awt.Color(64, 64, 64));
@@ -137,14 +151,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuUsuario.add(menuVerUsuario);
-
-        menuAltUsuario.setText("Alterar Usuário");
-        menuAltUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAltUsuarioActionPerformed(evt);
-            }
-        });
-        menuUsuario.add(menuAltUsuario);
 
         menuCadUsuario.setText("Cadrastro de Usuário");
         menuCadUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +198,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menu.add(menuEmpres);
 
+        menuUsuario1.setBackground(new java.awt.Color(70, 70, 70));
+        menuUsuario1.setText("Ajuda");
+
+        menuVerUsuario1.setText("Sobre");
+        menuVerUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVerUsuario1ActionPerformed(evt);
+            }
+        });
+        menuUsuario1.add(menuVerUsuario1);
+
+        menu.add(menuUsuario1);
+
         setJMenuBar(menu);
         menu.getAccessibleContext().setAccessibleName("Library System");
 
@@ -227,10 +246,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuHistoryEmpActionPerformed
 
-    private void menuAltUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuAltUsuarioActionPerformed
-
     private void menuCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadUsuarioActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -240,6 +255,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuCadEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadEmpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuCadEmpActionPerformed
+
+    private void menuVerUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVerUsuario1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuVerUsuario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,9 +298,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JMenuBar menu;
-    private javax.swing.JMenuItem menuAltUsuario;
     private javax.swing.JMenuItem menuAutoEmp;
     private javax.swing.JMenu menuBook;
     private javax.swing.JMenuItem menuCadEmp;
@@ -291,6 +311,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuHistoryEmp;
     private javax.swing.JMenuItem menuLivro;
     private javax.swing.JMenu menuUsuario;
+    private javax.swing.JMenu menuUsuario1;
     private javax.swing.JMenuItem menuVerUsuario;
+    private javax.swing.JMenuItem menuVerUsuario1;
     // End of variables declaration//GEN-END:variables
 }

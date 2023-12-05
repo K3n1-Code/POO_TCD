@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifnmg.exemplary;
+package br.edu.ifnmg.copy;
 
 import br.edu.ifnmg.book.Book;
 import br.edu.ifnmg.book.BookDao;
@@ -17,7 +17,7 @@ import java.sql.Types;
  *
  * @author joaok
  */
-public class ExemplaryDao extends Dao<Exemplary> {
+public class CopyDao extends Dao<Copy> {
     
         public static final String TABLE = "exemplary";
 
@@ -47,10 +47,10 @@ public class ExemplaryDao extends Dao<Exemplary> {
     }
 
     @Override
-    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Exemplary exemplary) {
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Copy exemplary) {
         try {
-            if (exemplary.getDisponivel()!= null) {
-                pstmt.setObject(1, exemplary.getDisponivel(), Types.BOOLEAN);
+            if (exemplary.isDisponivel()!= null) {
+                pstmt.setObject(1, exemplary.isDisponivel(), Types.BOOLEAN);
             }
             if (exemplary.getBook().getId() != null) {
                 pstmt.setObject(2, exemplary.getBook().getId(), Types.BIGINT);
@@ -67,10 +67,10 @@ public class ExemplaryDao extends Dao<Exemplary> {
     }
 
     @Override
-    public Exemplary extractObject(ResultSet rs) {
-        Exemplary exemplary = null;
+    public Copy extractObject(ResultSet rs) {
+        Copy exemplary = null;
         try {
-            exemplary = new Exemplary();
+            exemplary = new Copy();
             exemplary.setDisponivel(rs.getBoolean("available"));
             Book book = new BookDao().findById(rs.getLong("book_id"));
             exemplary.setBook(book);
