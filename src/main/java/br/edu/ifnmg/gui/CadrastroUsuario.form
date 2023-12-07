@@ -205,9 +205,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUsuario">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsuarioActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSenha">
           <Properties>
@@ -215,9 +212,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="pwdSenha">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pwdSenhaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkAtivo">
           <Properties>
@@ -235,9 +229,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
         </Component>
