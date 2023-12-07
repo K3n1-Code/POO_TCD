@@ -93,9 +93,9 @@ public class Book
         if (year == null) {
             throw new IllegalArgumentException("Ano nulo");
         }
-//        else if (year < 1) {
-//            throw new IllegalArgumentException("O numero do ano deve ser maior que zero");
-//        }
+        else if (year < 1) {
+            throw new IllegalArgumentException("O ano deve ser maior que zero");
+        }
 
         this.year = year;
     }

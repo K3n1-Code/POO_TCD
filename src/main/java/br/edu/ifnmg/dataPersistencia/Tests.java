@@ -150,4 +150,37 @@ public class Tests {
         }
     }
 
+    public static void AtualizaLivros() {
+        String novoTitulo = "c";
+        String novoAutor = "c";
+        Short novasPaginas = 200;
+        Short novoAno = 2023;
+        Byte novaEdicao = 2;
+
+        try {
+            // Recupera o livro pelo título do banco de dados
+            BookDao bookDao = new BookDao();
+            String tituloParaAtualizar = "b";
+
+            Book livroAtualizar = bookDao.findByName(tituloParaAtualizar);
+
+            if (livroAtualizar != null) {
+                System.out.println("Antes da Atualização: " + livroAtualizar);
+
+                livroAtualizar.setTitle(novoTitulo);
+                livroAtualizar.setAuthors(novoAutor);
+                livroAtualizar.setPages(novasPaginas);
+                livroAtualizar.setYear(novoAno);
+                livroAtualizar.setEdition(novaEdicao);
+
+                bookDao.saveOrUpdate(livroAtualizar);
+
+                System.out.println("Depois da Atualização: " + livroAtualizar);
+            } else {
+                System.out.println("Livro não encontrado para atualização.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

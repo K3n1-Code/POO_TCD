@@ -17,5 +17,6 @@ public class Data_Persistencia {
 //        Tests.Livro();
 //        Tests.TdsLivros();
 //        Tests.DeleteLivros();
+        Tests.AtualizaLivros();
     }
 }

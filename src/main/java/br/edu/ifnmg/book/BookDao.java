@@ -29,7 +29,7 @@ public class BookDao extends Dao<Book> {
 
     @Override
     public String getUpdateStatement() {
-        return "update " + TABLE + " set title = ?, authors = ? pages = ?, year = ?, edition = ? WHERE id = ?";
+        return "update " + TABLE + " set title = ?, authors = ?, pages = ?, year = ?, edition = ? WHERE id = ?";
     }
 
     @Override
