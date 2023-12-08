@@ -10,8 +10,7 @@ import br.edu.ifnmg.entity.Entity;
  *
  * @author joaok
  */
-public class Book
-        extends Entity {
+public class Book extends Entity {
 
     private String title;
     private String authors;

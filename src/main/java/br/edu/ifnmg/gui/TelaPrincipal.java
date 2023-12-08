@@ -41,6 +41,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             instance.menuCadUsuario.setVisible(true);
             instance.menuCadLivro.setVisible(true);
             instance.menuAtualiza.setVisible(true);
+            instance.menuComments.setVisible(true);
             instance.menuApaga.setVisible(true);
             instance.menuLivro.setVisible(true);
             instance.menuCadEmp.setVisible(true);
@@ -55,6 +56,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             instance.menuCadUsuario.setVisible(false);
             instance.menuCadLivro.setVisible(true);
             instance.menuAtualiza.setVisible(true);
+            instance.menuComments.setVisible(false);
             instance.menuApaga.setVisible(true);
             instance.menuLivro.setVisible(true);
             instance.menuCadEmp.setVisible(true);
@@ -69,6 +71,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             instance.menuCadUsuario.setVisible(false);
             instance.menuCadLivro.setVisible(false);
             instance.menuAtualiza.setVisible(false);
+            instance.menuComments.setVisible(true);
             instance.menuApaga.setVisible(false);
             instance.menuLivro.setVisible(true);
             instance.menuCadEmp.setVisible(false);
@@ -108,6 +111,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadLivro = new javax.swing.JMenuItem();
         menuApaga = new javax.swing.JMenuItem();
         menuAtualiza = new javax.swing.JMenuItem();
+        menuComments = new javax.swing.JMenuItem();
         menuLivro = new javax.swing.JMenuItem();
         menuEmpres = new javax.swing.JMenu();
         menuCadEmp = new javax.swing.JMenuItem();
@@ -205,6 +209,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuBook.add(menuAtualiza);
 
+        menuComments.setText("Realizar Comentários");
+        menuComments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCommentsActionPerformed(evt);
+            }
+        });
+        menuBook.add(menuComments);
+
         menuLivro.setText("Livros");
         menuBook.add(menuLivro);
 
@@ -272,6 +284,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         Login.getInstance().setVisible(true);
+        
     }//GEN-LAST:event_formWindowClosed
 
     private void menuVerUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVerUsuarioActionPerformed
@@ -326,6 +339,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         AtualizaLivro.getInstance().setVisible(true);
     }//GEN-LAST:event_menuAtualizaActionPerformed
 
+    private void menuCommentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCommentsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Comentarios.getInstance().setVisible(true);
+    }//GEN-LAST:event_menuCommentsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +393,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCadEmp1;
     private javax.swing.JMenuItem menuCadLivro;
     private javax.swing.JMenuItem menuCadUsuario;
+    private javax.swing.JMenuItem menuComments;
     private javax.swing.JMenu menuEmpres;
     private javax.swing.JMenu menuEmpres1;
     private javax.swing.JMenuItem menuEncerrar;

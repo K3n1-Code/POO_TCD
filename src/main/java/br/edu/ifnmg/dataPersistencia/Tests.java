@@ -4,6 +4,8 @@ import br.edu.ifnmg.adm.Adm;
 import br.edu.ifnmg.adm.AdmDao;
 import br.edu.ifnmg.book.Book;
 import br.edu.ifnmg.book.BookDao;
+import br.edu.ifnmg.commets.Comments;
+import br.edu.ifnmg.commets.CommentsDao;
 import java.time.LocalDate;
 
 import br.edu.ifnmg.credential.Credential;
@@ -141,16 +143,17 @@ public class Tests {
     }
 
     public static void DeleteLivros() {
-        try {
-            String tituloParaDeletar = "A Cabana";
-            new BookDao().deleteByTitle(tituloParaDeletar);
-            System.out.println("Livro '" + tituloParaDeletar + "' deletado com sucesso!");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            String tituloParaDeletar = "A Cabana";
+//            new BookDao().deleteByTitle(tituloParaDeletar);
+//            System.out.println("Livro '" + tituloParaDeletar + "' deletado com sucesso!");
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
     }
 
     public static void AtualizaLivros() {
+
         String novoTitulo = "c";
         String novoAutor = "c";
         Short novasPaginas = 200;
@@ -158,11 +161,12 @@ public class Tests {
         Byte novaEdicao = 2;
 
         try {
-            // Recupera o livro pelo título do banco de dados
-            BookDao bookDao = new BookDao();
-            String tituloParaAtualizar = "b";
+            // Fornecer o ID do livro que deseja atualizar
+            Long idParaAtualizar = 15L; // Substitua 1L pelo ID desejado
 
-            Book livroAtualizar = bookDao.findByName(tituloParaAtualizar);
+            // Recupera o livro pelo ID do banco de dados
+            BookDao bookDao = new BookDao();
+            Book livroAtualizar = bookDao.findById(idParaAtualizar);
 
             if (livroAtualizar != null) {
                 System.out.println("Antes da Atualização: " + livroAtualizar);
@@ -182,5 +186,65 @@ public class Tests {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void AtualizaUsuario() {
+        try {
+            // Suponha que você tenha o ID do usuário que deseja atualizar
+            Long userIdToUpdate = 7L;  // Substitua 1L pelo ID do usuário que você deseja atualizar
+
+            // Busque o usuário pelo ID
+            AdmDao admDao = new AdmDao();
+            Adm userToUpdate = admDao.findById(userIdToUpdate);
+
+            // Atualize os dados do usuário
+            userToUpdate.setName("Novo test");
+            userToUpdate.setEmail("novo_email@email.com");
+            userToUpdate.setBirthDate(LocalDate.of(2000, 1, 1));  // Substitua pela nova data de nascimento
+
+            userToUpdate.getCredential().setUsername("321");
+            userToUpdate.getCredential().setPassword("321");
+
+            // Salve as alterações no banco de dados
+            admDao.saveOrUpdate(userToUpdate);
+
+            System.out.println("Usuário atualizado com sucesso!!");
+            System.out.println(userToUpdate.toString());
+        } catch (Exception ex) {
+            System.out.println("Erro ao tentar atualizar o usuário: " + ex.getMessage());
+        }
+    }
+
+    public static void Comentarios() {
+
+        try {
+            Long readerId = 4L; // Substitua pelo ID real do leitor
+            Long bookId = 16L;   // Substitua pelo ID real do livro
+
+            // Buscar o leitor por ID
+            ReaderDao readerDao = new ReaderDao();
+            Reader reader = readerDao.findById(readerId);
+
+            // Buscar o livro por ID
+            BookDao bookDao = new BookDao();
+            Book book = bookDao.findById(bookId);
+
+            // Verificar se o leitor e o livro foram encontrados
+            if (reader != null && book != null) {
+                // Adicionar um comentário ao livro
+                CommentsDao commentsDao = new CommentsDao();
+                Comments comment = new Comments(null, "Um ótimo livro!", book, reader);
+                commentsDao.saveOrUpdate(comment);
+
+                System.out.println("Comentário adicionado com sucesso!");
+            } else {
+                System.out.println("Leitor ou livro não encontrado.");
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Ocorreu um erro: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+
     }
 }

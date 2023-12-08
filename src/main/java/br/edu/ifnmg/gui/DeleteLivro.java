@@ -26,7 +26,7 @@ public class DeleteLivro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         lblApagado.setVisible(false);
         lblSelecione.setVisible(false);
-        updateBookTable();
+        DeleteBookTable();
     }
 
     public static DeleteLivro getInstance() {
@@ -64,13 +64,13 @@ public class DeleteLivro extends javax.swing.JFrame {
 
         tableLivro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Titulo", "Autor", "Páginas", "Ano", "Edição"
+                "Id", "Titulo", "Autor", "Páginas", "Ano", "Edição"
             }
         ));
         jScrollPane1.setViewportView(tableLivro);
@@ -97,29 +97,31 @@ public class DeleteLivro extends javax.swing.JFrame {
             panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDeleteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTdsLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(7, Short.MAX_VALUE))
-            .addGroup(panelDeleteLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeleteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDeleteLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblApagado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(panelDeleteLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(lblSelecione)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(btnDelete)
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeleteLayout.createSequentialGroup()
+                        .addGroup(panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeleteLayout.createSequentialGroup()
+                                .addComponent(lblApagado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeleteLayout.createSequentialGroup()
+                                .addComponent(lblSelecione)
+                                .addGap(87, 87, 87)))
+                        .addComponent(btnDelete)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeleteLayout.createSequentialGroup()
+                        .addComponent(lblTdsLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
         panelDeleteLayout.setVerticalGroup(
             panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeleteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(lblTdsLivros)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,15 +167,16 @@ public class DeleteLivro extends javax.swing.JFrame {
         int selectedRow = tableLivro.getSelectedRow();
         if (selectedRow != -1) {
             // Obtém o título da coluna 'Titulo' na linha clicada
-            String selectedTitle = (String) tableLivro.getValueAt(selectedRow, 0);
-            deleteBook(selectedTitle);
+            Long selectedId = (Long) tableLivro.getValueAt(selectedRow, 0);
+            deleteBook(selectedId);
+            DeleteBookTable();
         } else {
             System.out.println("Selecione um livro antes de deletar.");
             lblSelecione.setVisible(true);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void updateBookTable() {
+    private void DeleteBookTable() {
         try {
             BookDao bookDao = new BookDao();
             List<Book> books = bookDao.findAll();
@@ -183,6 +186,7 @@ public class DeleteLivro extends javax.swing.JFrame {
 
             for (Book book : books) {
                 Object[] rowData = {
+                    book.getId(),
                     book.getTitle(),
                     book.getAuthors(),
                     book.getPages(),
@@ -196,16 +200,16 @@ public class DeleteLivro extends javax.swing.JFrame {
         }
     }
 
-    private void deleteBook(String selectedTitle) {
+    private void deleteBook(Long selectedId) {
         try {
-            if (selectedTitle != null && !selectedTitle.isEmpty()) {
-                new BookDao().deleteByTitle(selectedTitle);
-                System.out.println("Livro '" + selectedTitle + "' deletado com sucesso!");
+            if (selectedId != null) {
+                new BookDao().delete(selectedId);
+                System.out.println("Livro '" + selectedId + "' deletado com sucesso!");
                 lblSelecione.setVisible(false);
                 lblApagado.setVisible(true);
 
                 // Atualiza a tabela após a exclusão
-                updateBookTable();
+                DeleteBookTable();
             } else {
                 System.out.println("Selecione um livro antes de deletar.");
                 lblSelecione.setVisible(true);
