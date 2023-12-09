@@ -15,6 +15,7 @@ import br.edu.ifnmg.role.Role;
 import br.edu.ifnmg.role.RoleDao;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,7 +39,7 @@ public class CadrastroUsuario extends javax.swing.JFrame {
         if (instance == null) {
             instance = new CadrastroUsuario();
         }
-
+        instance.setAlwaysOnTop(true);
         return instance;
     }
 
@@ -211,15 +212,11 @@ public class CadrastroUsuario extends javax.swing.JFrame {
                 .addGroup(PanelCadrastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAniversario)
                     .addComponent(calDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(PanelCadrastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCadrastroLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(btnSalvar)
-                        .addGap(31, 31, 31))
-                    .addGroup(PanelCadrastroLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblCadastro)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(PanelCadrastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(lblCadastro))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,9 +268,11 @@ public class CadrastroUsuario extends javax.swing.JFrame {
                 L = new LibrarianDao().findById(user_id);
                 new LibrarianDao().saveOrUpdate(L);
                 System.out.println("Bibliotecário Cadastrado!!");
+                instance.setAlwaysOnTop(false);
+                JOptionPane.showMessageDialog(null, "Bibliotecário Cadastrado!!");
                 lblCadastro.setVisible(true);
-//                this.setVisible(false);
-//                TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
+                //this.setVisible(false);
+                //TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
                 System.out.println(L.toString());
             } else if (boxPapel.getSelectedItem().toString().equals("Leitor")) {
                 Reader joao = null;
@@ -288,10 +287,12 @@ public class CadrastroUsuario extends javax.swing.JFrame {
 
                 joao = new ReaderDao().findById(user_id);
                 new ReaderDao().saveOrUpdate(joao);
+                instance.setAlwaysOnTop(false);
+                //JOptionPane.showMessageDialog(null, "Leitor Cadastrado!!");
                 System.out.println("Leitor Cadastrado!!");
                 lblCadastro.setVisible(true);
-//                this.setVisible(false);
-//                TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
+                //this.setVisible(false);
+                //TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
                 System.out.println(joao.toString());
             } else if (boxPapel.getSelectedItem().toString().equals("Administrador")) {
                 Adm adm = null;
@@ -306,12 +307,22 @@ public class CadrastroUsuario extends javax.swing.JFrame {
 
                 adm = new AdmDao().findById(user_id);
                 new AdmDao().saveOrUpdate(adm);
+                instance.setAlwaysOnTop(false);
+                //JOptionPane.showMessageDialog(null, "Administrador Cadastrado!!");
                 System.out.println("Administrador Cadastrado!!");
                 lblCadastro.setVisible(true);
-//                this.setVisible(false);
-//                TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
+                //this.setVisible(false);
+                //TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
                 System.out.println(adm.toString());
             }
+            boxPapel.setSelectedIndex(0);
+            txtUsuario.setText("");
+            pwdSenha.setText("");
+            chkAtivo.setSelected(false);
+            txtNome.setText("");
+            txtEmail.setText("");
+            calDate.setDate(null);
+            this.setVisible(false);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

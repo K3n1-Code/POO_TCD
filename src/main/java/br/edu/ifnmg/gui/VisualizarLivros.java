@@ -13,25 +13,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author joaok
  */
-public class DeleteLivro extends javax.swing.JFrame {
+public class VisualizarLivros extends javax.swing.JFrame {
 
     /**
      * Creates new form DeleteLivro
      */
-    private static DeleteLivro instance;
+    private static VisualizarLivros instance;
 
-    public DeleteLivro() {
+    public VisualizarLivros() {
         initComponents();
         // Centralização da janela
         setLocationRelativeTo(null);
-        lblApagado.setVisible(false);
-        lblSelecione.setVisible(false);
-        DeleteBookTable();
+        ViewBookTable();
     }
 
-    public static DeleteLivro getInstance() {
+    public static VisualizarLivros getInstance() {
         if (instance == null) {
-            instance = new DeleteLivro();
+            instance = new VisualizarLivros();
         }
         instance.setAlwaysOnTop(true);
         return instance;
@@ -50,9 +48,6 @@ public class DeleteLivro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableLivro = new javax.swing.JTable();
         lblTdsLivros = new javax.swing.JLabel();
-        lblApagado = new javax.swing.JLabel();
-        lblSelecione = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Apagar Livro");
@@ -78,19 +73,6 @@ public class DeleteLivro extends javax.swing.JFrame {
         lblTdsLivros.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         lblTdsLivros.setText("Livros Cadrastrados");
 
-        lblApagado.setForeground(new java.awt.Color(0, 0, 255));
-        lblApagado.setText("Livro Apagado Com Sucesso!!");
-
-        lblSelecione.setForeground(new java.awt.Color(240, 0, 0));
-        lblSelecione.setText("Selecione um Livro");
-
-        btnDelete.setText("Apagar");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelDeleteLayout = new javax.swing.GroupLayout(panelDelete);
         panelDelete.setLayout(panelDeleteLayout);
         panelDeleteLayout.setHorizontalGroup(
@@ -101,18 +83,6 @@ public class DeleteLivro extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTdsLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(7, Short.MAX_VALUE))
-            .addGroup(panelDeleteLayout.createSequentialGroup()
-                .addGroup(panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDeleteLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblApagado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(panelDeleteLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(lblSelecione)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(btnDelete)
-                .addContainerGap())
         );
         panelDeleteLayout.setVerticalGroup(
             panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,14 +91,7 @@ public class DeleteLivro extends javax.swing.JFrame {
                 .addComponent(lblTdsLivros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDeleteLayout.createSequentialGroup()
-                        .addComponent(lblSelecione)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblApagado))
-                    .addComponent(btnDelete))
-                .addGap(138, 138, 138))
+                .addGap(194, 194, 194))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,28 +116,12 @@ public class DeleteLivro extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        lblSelecione.setVisible(false);
-        lblApagado.setVisible(false);
 
         this.setVisible(false);
         TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = tableLivro.getSelectedRow();
-        if (selectedRow != -1) {
-            // Obtém o título da coluna 'Titulo' na linha clicada
-            Long selectedId = (Long) tableLivro.getValueAt(selectedRow, 0);
-            deleteBook(selectedId);
-            DeleteBookTable();
-        } else {
-            System.out.println("Selecione um livro antes de deletar.");
-            lblSelecione.setVisible(true);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void DeleteBookTable() {
+    private void ViewBookTable() {
         try {
             BookDao bookDao = new BookDao();
             List<Book> books = bookDao.findAll();
@@ -198,24 +145,6 @@ public class DeleteLivro extends javax.swing.JFrame {
         }
     }
 
-    private void deleteBook(Long selectedId) {
-        try {
-            if (selectedId != null) {
-                new BookDao().delete(selectedId);
-                System.out.println("Livro '" + selectedId + "' deletado com sucesso!");
-                lblSelecione.setVisible(false);
-                lblApagado.setVisible(true);
-
-                // Atualiza a tabela após a exclusão
-                DeleteBookTable();
-            } else {
-                System.out.println("Selecione um livro antes de deletar.");
-                lblSelecione.setVisible(true);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     /**
      * @param args the command line arguments
@@ -234,29 +163,27 @@ public class DeleteLivro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteLivro().setVisible(true);
+                new VisualizarLivros().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblApagado;
-    private javax.swing.JLabel lblSelecione;
     private javax.swing.JLabel lblTdsLivros;
     private javax.swing.JPanel panelDelete;
     private javax.swing.JTable tableLivro;

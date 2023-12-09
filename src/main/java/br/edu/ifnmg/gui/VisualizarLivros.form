@@ -57,22 +57,6 @@
                   </Group>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="lblApagado" min="-2" pref="178" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
-                          <Component id="lblSelecione" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -82,16 +66,7 @@
                   <Component id="lblTdsLivros" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="298" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="lblSelecione" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblApagado" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="btnDelete" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -158,30 +133,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Livros Cadrastrados"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblApagado">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Livro Apagado Com Sucesso!!"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblSelecione">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="f0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Selecione um Livro"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnDelete">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Apagar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

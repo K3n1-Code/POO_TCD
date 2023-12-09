@@ -37,6 +37,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuVerUsuarioActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuVerUsuario1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Atualizar Usu&#xe1;rios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuVerUsuario1ActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadrastro de Usu&#xe1;rio"/>
@@ -47,7 +55,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuSair">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sair"/>
+                <Property name="text" type="java.lang.String" value="Sair da conta"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSairActionPerformed"/>
@@ -55,7 +63,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuEncerrar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Encerrar"/>
+                <Property name="text" type="java.lang.String" value="Fechar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEncerrarActionPerformed"/>
@@ -71,6 +79,14 @@
             <Property name="text" type="java.lang.String" value="Livro"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuLivro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Livros"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuLivroActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadLivro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar Livro"/>
@@ -79,12 +95,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadLivroActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuApaga">
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadLivro1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Apagar Livro"/>
+                <Property name="text" type="java.lang.String" value="Adicionar Exemplar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuApagaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadLivro1ActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAtualiza">
@@ -95,6 +111,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAtualizaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuApaga">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Apagar Livro"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuApagaActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuComments">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Realizar Coment&#xe1;rios"/>
@@ -102,11 +126,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCommentsActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuLivro">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Livros"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -117,7 +136,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadEmp">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro de Empr&#xe9;stimo"/>
+                <Property name="text" type="java.lang.String" value="Realizar de Empr&#xe9;stimo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadEmpActionPerformed"/>

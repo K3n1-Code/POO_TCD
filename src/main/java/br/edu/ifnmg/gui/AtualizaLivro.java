@@ -4,7 +4,6 @@
  */
 package br.edu.ifnmg.gui;
 
-import br.edu.ifnmg.gui.*;
 import br.edu.ifnmg.book.Book;
 import br.edu.ifnmg.book.BookDao;
 import java.util.List;
@@ -17,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class AtualizaLivro extends javax.swing.JFrame {
 
     /**
-     * Creates new form AtualizaLivro
+     * Creates new form DeleteLivro
      */
     private static AtualizaLivro instance;
 
@@ -34,7 +33,7 @@ public class AtualizaLivro extends javax.swing.JFrame {
         if (instance == null) {
             instance = new AtualizaLivro();
         }
-
+        instance.setAlwaysOnTop(true);
         return instance;
     }
 
@@ -64,6 +63,7 @@ public class AtualizaLivro extends javax.swing.JFrame {
         lblEdicao = new javax.swing.JLabel();
         txtEdicao = new javax.swing.JTextField();
         btnAtualiza = new javax.swing.JButton();
+        lblTdsLivros1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Atualizar Livro");
@@ -81,10 +81,11 @@ public class AtualizaLivro extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Titulo", "Autor", "Páginas", "Ano", "Edição"
+                "Id", "Titulo", "Autor", "Páginas", "Ano", "Edição"
             }
         ));
         jScrollPane1.setViewportView(tableLivro);
+        tableLivro.getAccessibleContext().setAccessibleName("");
 
         lblTdsLivros.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         lblTdsLivros.setText("Livros Cadrastrados");
@@ -112,96 +113,100 @@ public class AtualizaLivro extends javax.swing.JFrame {
             }
         });
 
+        lblTdsLivros1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        lblTdsLivros1.setText("Atualizar livro:");
+
         javax.swing.GroupLayout panelAtualizaLayout = new javax.swing.GroupLayout(panelAtualiza);
         panelAtualiza.setLayout(panelAtualizaLayout);
         panelAtualizaLayout.setHorizontalGroup(
             panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtualizaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTdsLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAtualizaLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblTdsLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAtualizaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAtualizaLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAtualizaLayout.createSequentialGroup()
-                                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPaginas)
-                                    .addComponent(lblAno))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panelAtualizaLayout.createSequentialGroup()
                                 .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAtualizaLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAtualiza)
                                     .addGroup(panelAtualizaLayout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
                                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(panelAtualizaLayout.createSequentialGroup()
-                                                .addComponent(lblTitulo)
-                                                .addGap(5, 5, 5))
-                                            .addComponent(lblAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelAtualizaLayout.createSequentialGroup()
-                                                .addGap(11, 11, 11)
-                                                .addComponent(lblSelecione))
-                                            .addGroup(panelAtualizaLayout.createSequentialGroup()
-                                                .addGap(7, 7, 7)
-                                                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                                            .addComponent(lblAno)
+                                            .addComponent(lblPaginas))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAtualizaLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblTitulo)
+                                            .addComponent(lblAutor))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtPaginas, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                        .addComponent(txtAno))
+                                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelAtualizaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSelecione)
+                                    .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnAtualiza)
+                                        .addComponent(lblAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAtualizaLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblEdicao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(25, 25, 25))
                     .addGroup(panelAtualizaLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(lblEdicao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAtualizaLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lblAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(lblTdsLivros1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelAtualizaLayout.setVerticalGroup(
             panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtualizaLayout.createSequentialGroup()
                 .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAtualizaLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addContainerGap()
+                        .addComponent(lblTdsLivros)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(panelAtualizaLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(lblTdsLivros1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTitulo)
                             .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(27, 27, 27)
                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAutor))
-                        .addGap(14, 14, 14)
+                            .addComponent(lblAutor)
+                            .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPaginas)
-                            .addComponent(txtPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
+                            .addComponent(txtPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPaginas))
+                        .addGap(23, 23, 23)
                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAno)
                             .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(27, 27, 27)
                         .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(lblAtualizado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAtualiza))
-                    .addGroup(panelAtualizaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelAtualizaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTdsLivros)
-                            .addComponent(lblSelecione))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSelecione)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(btnAtualiza)
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,7 +222,7 @@ public class AtualizaLivro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelAtualiza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelAtualiza, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -229,15 +234,16 @@ public class AtualizaLivro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         lblSelecione.setVisible(false);
         lblAtualizado.setVisible(false);
-
+        this.setAlwaysOnTop(false);
         this.setVisible(false);
-        TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
+        //TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAtualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizaActionPerformed
         // TODO add your handling code here:
         int selectedRow = tableLivro.getSelectedRow();
         if (selectedRow != -1) {
+            // Obtém o título da coluna 'Titulo' na linha clicada
             Long selectedId = (Long) tableLivro.getValueAt(selectedRow, 0);
             updateBook(selectedId);
 
@@ -249,7 +255,7 @@ public class AtualizaLivro extends javax.swing.JFrame {
             lblSelecione.setVisible(false);
             updateBookTable();
         } else {
-            System.out.println("Selecione um livro antes de atualizar.");
+            System.out.println("Selecione um livro antes de deletar.");
             lblSelecione.setVisible(true);
         }
     }//GEN-LAST:event_btnAtualizaActionPerformed
@@ -278,14 +284,13 @@ public class AtualizaLivro extends javax.swing.JFrame {
             tableLivro.getSelectionModel().addListSelectionListener(e -> {
                 int selectedRow = tableLivro.getSelectedRow();
                 if (selectedRow != -1) {
-                    // Obtém os dados da linha selecionada, incluindo o ID
+                    // Obtém os dados da linha selecionada
                     Long selectedId = (Long) tableLivro.getValueAt(selectedRow, 0);
                     String selectedTitle = (String) tableLivro.getValueAt(selectedRow, 1);
                     String selectedAuthor = (String) tableLivro.getValueAt(selectedRow, 2);
                     String selectedPages = String.valueOf(tableLivro.getValueAt(selectedRow, 3));
                     String selectedYear = String.valueOf(tableLivro.getValueAt(selectedRow, 4));
                     String selectedEdition = String.valueOf(tableLivro.getValueAt(selectedRow, 5));
-                   
 
                     // Define os dados nos campos de texto
                     txtTitulo.setText(selectedTitle);
@@ -302,7 +307,7 @@ public class AtualizaLivro extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
+
     private void updateBook(Long selectedId) {
         try {
             if (selectedId != null) {
@@ -312,25 +317,22 @@ public class AtualizaLivro extends javax.swing.JFrame {
                 Short novasPaginas = Short.parseShort(txtPaginas.getText());
                 Short novoAno = Short.parseShort(txtAno.getText());
                 Byte novaEdicao = Byte.parseByte(txtEdicao.getText());
-                // Recupera o livro pelo ID do banco de dados
+
                 BookDao bookDao = new BookDao();
                 Book livroAtualizar = bookDao.findById(selectedId);
 
+
                 if (livroAtualizar != null) {
-                    // Define os novos valores
                     livroAtualizar.setTitle(novoTitulo);
                     livroAtualizar.setAuthors(novoAutor);
                     livroAtualizar.setPages(novasPaginas);
                     livroAtualizar.setYear(novoAno);
                     livroAtualizar.setEdition(novaEdicao);
 
-                    // Atualiza o livro no banco de dados
                     bookDao.saveOrUpdate(livroAtualizar);
 
-                    // Atualiza a tabela na interface gráfica
                     updateBookTable();
 
-                    // Exibe mensagem de sucesso
                     lblSelecione.setVisible(false);
                     lblAtualizado.setVisible(true);
                 } else {
@@ -393,6 +395,7 @@ public class AtualizaLivro extends javax.swing.JFrame {
     private javax.swing.JLabel lblPaginas;
     private javax.swing.JLabel lblSelecione;
     private javax.swing.JLabel lblTdsLivros;
+    private javax.swing.JLabel lblTdsLivros1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelAtualiza;
     private javax.swing.JTable tableLivro;

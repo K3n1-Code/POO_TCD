@@ -41,10 +41,10 @@ public class EmprestarLivro extends javax.swing.JFrame {
         if (instance == null) {
             instance = new EmprestarLivro();
         }
-
+        instance.setAlwaysOnTop(true);
         return instance;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -200,6 +200,8 @@ public class EmprestarLivro extends javax.swing.JFrame {
                 .addComponent(PanelCadrastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleName("Emprestar Livro");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -47,19 +47,22 @@ public class CopyDao extends Dao<Copy> {
     }
 
     @Override
-    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Copy exemplary) {
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Copy copy) {
         try {
-            if (exemplary.isDisponivel()!= null) {
-                pstmt.setObject(1, exemplary.isDisponivel(), Types.BOOLEAN);
+            if (copy.isDisponivel()!= null) {
+                pstmt.setObject(1, copy.isDisponivel(), Types.BOOLEAN);
             }
-            if (exemplary.getBook().getId() != null) {
-                pstmt.setObject(2, exemplary.getBook().getId(), Types.BIGINT);
+            if (copy.getBook().getId() != null) {
+                pstmt.setObject(2, copy.getBook().getId(), Types.BIGINT);
             }
-            if (exemplary.getEmprestimo().getId() != null) {
-                pstmt.setObject(3, exemplary.getEmprestimo().getId(), Types.BIGINT);
+            if (copy.getEmprestimo()!=null && copy.getEmprestimo().getId() != null) {
+                pstmt.setObject(3, copy.getEmprestimo().getId(), Types.BIGINT);
+            }else{
+                pstmt.setObject(3, null, Types.NULL);
+
             }
-            if (exemplary.getId() != null) {
-                pstmt.setObject(4, exemplary.getId(), Types.BIGINT);
+            if (copy.getId() != null) {
+                pstmt.setObject(4, copy.getId(), Types.BIGINT);
             }
         } catch (Exception ex) {
             System.out.println("Exception in ComposeSave or Update " + ex);
@@ -68,18 +71,18 @@ public class CopyDao extends Dao<Copy> {
 
     @Override
     public Copy extractObject(ResultSet rs) {
-        Copy exemplary = null;
+        Copy copy = null;
         try {
-            exemplary = new Copy();
-            exemplary.setDisponivel(rs.getBoolean("available"));
+            copy = new Copy();
+            copy.setDisponivel(rs.getBoolean("available"));
             Book book = new BookDao().findById(rs.getLong("book_id"));
-            exemplary.setBook(book);
+            copy.setBook(book);
             Emprestimo emprestimo = new EmprestimoDao().findById(rs.getLong("emprestimo_id"));
-            exemplary.setEmprestimo(emprestimo);
-            exemplary.setId(rs.getLong("id"));
+            copy.setEmprestimo(emprestimo);
+            copy.setId(rs.getLong("id"));
         } catch (Exception ex) {
             System.out.println("Exception in extractObject: " + ex);
         }
-        return exemplary;
+        return copy;
     }
 }

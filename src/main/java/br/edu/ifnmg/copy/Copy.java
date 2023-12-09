@@ -22,11 +22,11 @@ public class Copy extends Entity {
         setDisponivel(null);
     }
 
-    public Copy(Long id, Boolean disponivel, Book book) throws Exception {   
+    public Copy(Long id, Book book) throws Exception {   
         setId(id);
         setBook(book);
         setEmprestimo(null);
-        setDisponivel(disponivel);
+        setDisponivel();
     }
     
     public Copy(Long id, Boolean disponivel, Book book, Emprestimo em) throws Exception {   
@@ -57,8 +57,12 @@ public class Copy extends Entity {
         return disponivel;
     }
 
+    public void setDisponivel() {
+        disponivel=(emprestimo==null);
+    }
+    
     public void setDisponivel(Boolean disponivel) {
-        this.disponivel = disponivel;
+        this.disponivel=disponivel;
     }
 
 //</editor-fold>
