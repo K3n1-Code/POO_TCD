@@ -36,8 +36,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //        
         if (current_cred.getUser().getRole().getName().equals("administrador")) {
             instance.menuVerUsuario.setVisible(true);
+            instance.menuSair.setVisible(true);
+            instance.menuEncerrar.setVisible(true);
             instance.menuCadUsuario.setVisible(true);
             instance.menuCadLivro.setVisible(true);
+            instance.menuAtualiza.setVisible(true);
+            instance.menuComments.setVisible(true);
+            instance.menuApaga.setVisible(true);
             instance.menuLivro.setVisible(true);
             instance.menuCadEmp.setVisible(true);
             instance.menuHistoryEmp.setVisible(true);
@@ -46,8 +51,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         } else if (current_cred.getUser().getRole().getName().equals("bibliotecário")) {
             instance.menuVerUsuario.setVisible(true);
+            instance.menuSair.setVisible(true);
+            instance.menuEncerrar.setVisible(true);
             instance.menuCadUsuario.setVisible(false);
             instance.menuCadLivro.setVisible(true);
+            instance.menuAtualiza.setVisible(true);
+            instance.menuComments.setVisible(false);
+            instance.menuApaga.setVisible(true);
             instance.menuLivro.setVisible(true);
             instance.menuCadEmp.setVisible(true);
             instance.menuHistoryEmp.setVisible(false);
@@ -56,8 +66,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         } else if (current_cred.getUser().getRole().getName().equals("leitor")) {
             instance.menuVerUsuario.setVisible(true);
+            instance.menuSair.setVisible(true);
+            instance.menuEncerrar.setVisible(true);
             instance.menuCadUsuario.setVisible(false);
             instance.menuCadLivro.setVisible(false);
+            instance.menuAtualiza.setVisible(false);
+            instance.menuComments.setVisible(true);
+            instance.menuApaga.setVisible(false);
             instance.menuLivro.setVisible(true);
             instance.menuCadEmp.setVisible(false);
             instance.menuHistoryEmp.setVisible(true);
@@ -86,21 +101,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPasswordField1 = new javax.swing.JPasswordField();
         PanelPrincipal = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         menuUsuario = new javax.swing.JMenu();
         menuVerUsuario = new javax.swing.JMenuItem();
         menuCadUsuario = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenuItem();
+        menuEncerrar = new javax.swing.JMenuItem();
         menuBook = new javax.swing.JMenu();
         menuCadLivro = new javax.swing.JMenuItem();
+        menuApaga = new javax.swing.JMenuItem();
+        menuAtualiza = new javax.swing.JMenuItem();
+        menuComments = new javax.swing.JMenuItem();
         menuLivro = new javax.swing.JMenuItem();
         menuEmpres = new javax.swing.JMenu();
         menuCadEmp = new javax.swing.JMenuItem();
         menuHistoryEmp = new javax.swing.JMenuItem();
         menuAutoEmp = new javax.swing.JMenuItem();
-        menuUsuario1 = new javax.swing.JMenu();
-        menuVerUsuario1 = new javax.swing.JMenuItem();
+        menuEmpres1 = new javax.swing.JMenu();
+        menuCadEmp1 = new javax.swing.JMenuItem();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -112,29 +130,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Quando Leitor, implementar Histórico aqui");
-
-        jLabel2.setText("Quando Biblitecario, mostrar livros aqui :D;  Implementar Classe LivroMenu");
-
         javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
         PanelPrincipal.setLayout(PanelPrincipalLayout);
         PanelPrincipalLayout.setHorizontalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(248, Short.MAX_VALUE))
+            .addGap(0, 665, Short.MAX_VALUE)
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(321, Short.MAX_VALUE))
+            .addGap(0, 378, Short.MAX_VALUE)
         );
 
         menu.setBackground(new java.awt.Color(64, 64, 64));
@@ -160,13 +164,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuUsuario.add(menuCadUsuario);
 
+        menuSair.setText("Sair");
+        menuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSairActionPerformed(evt);
+            }
+        });
+        menuUsuario.add(menuSair);
+
+        menuEncerrar.setText("Encerrar");
+        menuEncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEncerrarActionPerformed(evt);
+            }
+        });
+        menuUsuario.add(menuEncerrar);
+
         menu.add(menuUsuario);
 
         menuBook.setBackground(new java.awt.Color(70, 70, 70));
         menuBook.setText("Livro");
 
-        menuCadLivro.setText("Cadastro de Livro");
+        menuCadLivro.setText("Cadastrar Livro");
+        menuCadLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadLivroActionPerformed(evt);
+            }
+        });
         menuBook.add(menuCadLivro);
+
+        menuApaga.setText("Apagar Livro");
+        menuApaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuApagaActionPerformed(evt);
+            }
+        });
+        menuBook.add(menuApaga);
+
+        menuAtualiza.setText("Atualizar Livro");
+        menuAtualiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAtualizaActionPerformed(evt);
+            }
+        });
+        menuBook.add(menuAtualiza);
+
+        menuComments.setText("Realizar Comentários");
+        menuComments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCommentsActionPerformed(evt);
+            }
+        });
+        menuBook.add(menuComments);
 
         menuLivro.setText("Livros");
         menuBook.add(menuLivro);
@@ -198,18 +247,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menu.add(menuEmpres);
 
-        menuUsuario1.setBackground(new java.awt.Color(70, 70, 70));
-        menuUsuario1.setText("Ajuda");
+        menuEmpres1.setText("Ajuda");
 
-        menuVerUsuario1.setText("Sobre");
-        menuVerUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        menuCadEmp1.setText("Sobre");
+        menuCadEmp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuVerUsuario1ActionPerformed(evt);
+                menuCadEmp1ActionPerformed(evt);
             }
         });
-        menuUsuario1.add(menuVerUsuario1);
+        menuEmpres1.add(menuCadEmp1);
 
-        menu.add(menuUsuario1);
+        menu.add(menuEmpres1);
 
         setJMenuBar(menu);
         menu.getAccessibleContext().setAccessibleName("Library System");
@@ -236,6 +284,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         Login.getInstance().setVisible(true);
+        
     }//GEN-LAST:event_formWindowClosed
 
     private void menuVerUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVerUsuarioActionPerformed
@@ -245,6 +294,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuHistoryEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHistoryEmpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuHistoryEmpActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Login.getInstance().setVisible(true);
+    }//GEN-LAST:event_menuSairActionPerformed
 
     private void menuCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadUsuarioActionPerformed
         // TODO add your handling code here:
@@ -256,9 +311,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuCadEmpActionPerformed
 
-    private void menuVerUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVerUsuario1ActionPerformed
+    private void menuCadLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadLivroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuVerUsuario1ActionPerformed
+        this.setVisible(false);
+        CadastroLivro.getInstance().setVisible(true);
+    }//GEN-LAST:event_menuCadLivroActionPerformed
+
+    private void menuApagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuApagaActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        DeleteLivro.getInstance().setVisible(true);
+    }//GEN-LAST:event_menuApagaActionPerformed
+
+    private void menuEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEncerrarActionPerformed
+        // TODO add your handling code here:
+        // Close the program
+        System.exit(0);
+    }//GEN-LAST:event_menuEncerrarActionPerformed
+
+    private void menuCadEmp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadEmp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCadEmp1ActionPerformed
+
+    private void menuAtualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAtualizaActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        AtualizaLivro.getInstance().setVisible(true);
+    }//GEN-LAST:event_menuAtualizaActionPerformed
+
+    private void menuCommentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCommentsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Comentarios.getInstance().setVisible(true);
+    }//GEN-LAST:event_menuCommentsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,21 +383,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelPrincipal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JMenuBar menu;
+    private javax.swing.JMenuItem menuApaga;
+    private javax.swing.JMenuItem menuAtualiza;
     private javax.swing.JMenuItem menuAutoEmp;
     private javax.swing.JMenu menuBook;
     private javax.swing.JMenuItem menuCadEmp;
+    private javax.swing.JMenuItem menuCadEmp1;
     private javax.swing.JMenuItem menuCadLivro;
     private javax.swing.JMenuItem menuCadUsuario;
+    private javax.swing.JMenuItem menuComments;
     private javax.swing.JMenu menuEmpres;
+    private javax.swing.JMenu menuEmpres1;
+    private javax.swing.JMenuItem menuEncerrar;
     private javax.swing.JMenuItem menuHistoryEmp;
     private javax.swing.JMenuItem menuLivro;
+    private javax.swing.JMenuItem menuSair;
     private javax.swing.JMenu menuUsuario;
-    private javax.swing.JMenu menuUsuario1;
     private javax.swing.JMenuItem menuVerUsuario;
-    private javax.swing.JMenuItem menuVerUsuario1;
     // End of variables declaration//GEN-END:variables
 }

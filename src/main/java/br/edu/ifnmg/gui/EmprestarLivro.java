@@ -224,7 +224,7 @@ public class EmprestarLivro extends javax.swing.JFrame {
             this.setVisible(false);
             PwdSenha.setText(null);
             txtUsuario.setText(null);
-            Emprestimo.emprestar(getSelectedDate(calDate),TelaPrincipal.current_cred.getUser(),usuario,boxLivro.getSelectedIndex());
+            //Emprestimo.emprestar(getSelectedDate(calDate),TelaPrincipal.current_cred.getUser(),usuario,boxLivro.getSelectedIndex());
 
         } else {
 

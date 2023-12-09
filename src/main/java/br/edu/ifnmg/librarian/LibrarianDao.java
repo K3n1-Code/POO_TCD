@@ -4,6 +4,7 @@ import br.edu.ifnmg.credential.Credential;
 import br.edu.ifnmg.credential.CredentialDao;
 import br.edu.ifnmg.repository.Dao;
 import br.edu.ifnmg.repository.DbConnection;
+import static br.edu.ifnmg.repository.DbConnection.getConnection;
 import br.edu.ifnmg.user.UserDao;
 
 import java.sql.PreparedStatement;
@@ -59,7 +60,7 @@ public class LibrarianDao extends Dao<Librarian> {
 
     @Override
     public String getFindByIdStatement() {
-        return "select id, name, email, birthdate from " + TABLE + " where id = ?";
+        return "select name, email, birthdate, id from " + TABLE + " where id = ?";
     }
     
 //    @Override
@@ -80,7 +81,6 @@ public class LibrarianDao extends Dao<Librarian> {
     public String getDeleteStatement() {
         return "delete from " + TABLE + " where id = ?";
     }
-
 
     @Override
     public Librarian extractObject(ResultSet rs) {

@@ -29,7 +29,7 @@ public class BookDao extends Dao<Book> {
 
     @Override
     public String getUpdateStatement() {
-        return "update " + TABLE + " set title = ?, authors = ? pages = ?, year = ?, edition = ? WHERE id = ?";
+        return "update " + TABLE + " set title = ?, authors = ?, pages = ?, year = ?, edition = ? WHERE id = ?";
     }
 
     @Override
@@ -67,14 +67,39 @@ public class BookDao extends Dao<Book> {
         return "delete from " + TABLE + " where id = ?";
     }
 
-    public Book findByName(String title) throws Exception {
+//    public Book findByName(String title) throws Exception {
+//
+//        String sql = "SELECT id, title, authors, pages, year, edition"
+//                + " FROM book"
+//                + " WHERE title = ?";
+//
+//        PreparedStatement pstmt = getConnection().prepareStatement(sql);
+//        pstmt.setString(1, title);
+//
+//        ResultSet resultSet = pstmt.executeQuery();
+//
+//        if (resultSet.next()) {
+//            Book book = new Book();
+//            book.setId(resultSet.getLong("id"));
+//            book.setTitle(resultSet.getString("title"));
+//            book.setAuthors(resultSet.getString("authors"));
+//            book.setPages(resultSet.getShort("pages"));
+//            book.setYear(resultSet.getShort("year"));
+//            book.setEdition(resultSet.getByte("edition"));
+//
+//            return book;
+//        } else {
+//            return null;
+//        }
+//    }
+    public Book findByid(Long id) throws Exception {
 
         String sql = "SELECT id, title, authors, pages, year, edition"
                 + " FROM book"
-                + " WHERE title = ?";
+                + " WHERE id = ?";
 
         PreparedStatement pstmt = getConnection().prepareStatement(sql);
-        pstmt.setString(1, title);
+        pstmt.setLong(0, id);
 
         ResultSet resultSet = pstmt.executeQuery();
 
@@ -149,17 +174,4 @@ public class BookDao extends Dao<Book> {
         }
 
     }
-
-    public void deleteByTitle(String title) {
-
-        String sql = "DELETE FROM " + TABLE + " WHERE title = ?";
-        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
-            pstmt.setString(1, title);
-
-            pstmt.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
-        }
-    }
-
 }

@@ -6,14 +6,6 @@ package br.edu.ifnmg.gui;
 
 import br.edu.ifnmg.book.Book;
 import br.edu.ifnmg.book.BookDao;
-import br.edu.ifnmg.credential.Credential;
-import br.edu.ifnmg.librarian.Librarian;
-import br.edu.ifnmg.librarian.LibrarianDao;
-import br.edu.ifnmg.role.Role;
-import br.edu.ifnmg.role.RoleDao;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +20,8 @@ public class CadastroLivro extends javax.swing.JFrame {
 
     public CadastroLivro() {
         initComponents();
+        lblIncorreto.setVisible(false);
+        lblCadastrado.setVisible(false);
         // Centralização da janela
         setLocationRelativeTo(null);
     }
@@ -47,12 +41,6 @@ public class CadastroLivro extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
 
-    private LocalDate getSelectedDate(com.toedter.calendar.JDateChooser dateChooser) {
-        if (dateChooser.getDate() != null) {
-            return dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        }
-        return LocalDate.now();
-    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -65,16 +53,18 @@ public class CadastroLivro extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         PanelCadrastroLivro = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
-        txTitulo = new javax.swing.JTextField();
+        txtTitulo = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
-        txAutor = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         lblPage = new javax.swing.JLabel();
         lblYear = new javax.swing.JLabel();
         lblEdition = new javax.swing.JLabel();
-        txPaginas = new javax.swing.JTextField();
-        txYear = new javax.swing.JTextField();
-        txEdition = new javax.swing.JTextField();
+        txtYear = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        txtPaginas = new javax.swing.JTextField();
+        txtEdition = new javax.swing.JTextField();
+        lblIncorreto = new javax.swing.JLabel();
+        lblCadastrado = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -90,7 +80,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cadrastro Usuário");
+        setTitle("Cadrastro Livro");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -99,19 +89,13 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         lblUsuario.setText("Titulo:");
 
-        txTitulo.addActionListener(new java.awt.event.ActionListener() {
+        txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txTituloActionPerformed(evt);
+                txtTituloActionPerformed(evt);
             }
         });
 
         lblSenha.setText("Autor:");
-
-        txAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txAutorActionPerformed(evt);
-            }
-        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -126,23 +110,11 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         lblEdition.setText("Edição:");
 
-        txPaginas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txPaginasActionPerformed(evt);
-            }
-        });
+        lblIncorreto.setForeground(new java.awt.Color(240, 0, 0));
+        lblIncorreto.setText("Campos Indefinidos ou 0 Troque-os");
 
-        txYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txYearActionPerformed(evt);
-            }
-        });
-
-        txEdition.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txEditionActionPerformed(evt);
-            }
-        });
+        lblCadastrado.setForeground(new java.awt.Color(0, 0, 255));
+        lblCadastrado.setText("Livros Cadastrado com Sucesso!!");
 
         javax.swing.GroupLayout PanelCadrastroLivroLayout = new javax.swing.GroupLayout(PanelCadrastroLivro);
         PanelCadrastroLivro.setLayout(PanelCadrastroLivroLayout);
@@ -151,27 +123,32 @@ public class CadastroLivro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCadrastroLivroLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCadrastroLivroLayout.createSequentialGroup()
-                        .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblPage)
-                            .addComponent(lblSenha)
-                            .addComponent(lblEdition))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PanelCadrastroLivroLayout.createSequentialGroup()
+                            .addComponent(lblYear)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtYear, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                        .addGroup(PanelCadrastroLivroLayout.createSequentialGroup()
                             .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txAutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txPaginas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblUsuario)
+                                .addComponent(lblPage)
+                                .addComponent(lblSenha)
+                                .addComponent(lblEdition))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtPaginas, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtEdition, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))
                     .addGroup(PanelCadrastroLivroLayout.createSequentialGroup()
-                        .addComponent(lblYear)
+                        .addGap(0, 15, Short.MAX_VALUE)
+                        .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIncorreto)
+                            .addGroup(PanelCadrastroLivroLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblCadastrado)))
                         .addGap(18, 18, 18)
-                        .addComponent(txYear, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(128, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCadrastroLivroLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
+                        .addComponent(btnSalvar)))
                 .addContainerGap())
         );
         PanelCadrastroLivroLayout.setVerticalGroup(
@@ -180,26 +157,31 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
-                    .addComponent(txTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSenha))
+                    .addComponent(lblSenha)
+                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPage)
-                    .addComponent(txPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblYear)
-                    .addComponent(txYear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEdition)
-                    .addComponent(txEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
-                .addContainerGap())
+                    .addComponent(txtEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelCadrastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar)
+                    .addGroup(PanelCadrastroLivroLayout.createSequentialGroup()
+                        .addComponent(lblIncorreto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCadastrado)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,65 +204,50 @@ public class CadastroLivro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTituloActionPerformed
+    private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txTituloActionPerformed
-
-    private void txAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txAutorActionPerformed
+    }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-        try {
-                Book livro = new Book(
-                                        null, 
-                                        txTitulo.getText(),
-                                        txAutor.getText(),
-                                        Short.valueOf(txPaginas.getText()),
-                                        Short.valueOf(txYear.getText()),
-                                        Byte.valueOf(txEdition.getText())
-                );
-                
-                Long book_id = new BookDao().saveOrUpdate(livro);
-                livro.setId(book_id);
-                
-                Book b = new BookDao().findById(book_id);
-                new BookDao().saveOrUpdate(b);
-                System.out.println("Livro Cadastrado!!");
-                JOptionPane.showMessageDialog(null, "Livro Cadastrado!!");
-                this.setVisible(false);
-                TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
-                System.out.println(b.toString());
+//         TODO add your handling code here:
+        Long book1Id = null;
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        try {
+            Book livro = new Book();
+            livro.setId(null);
+            livro.setTitle(txtTitulo.getText());
+            livro.setAuthors(txtAutor.getText());
+            livro.setPages(Short.valueOf(txtPaginas.getText()));
+            livro.setYear(Short.valueOf(txtYear.getText()));
+            livro.setEdition(Byte.valueOf(txtEdition.getText()));
+
+            book1Id = new BookDao().saveOrUpdate(livro);
+            livro.setId(book1Id);
+            System.out.println("Livro Cadastrado!!");
+            System.out.println(livro.toString());
+            lblIncorreto.setVisible(false);
+            lblCadastrado.setVisible(true);
+//            this.setVisible(false);
+//            TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            lblIncorreto.setVisible(true);
+            lblCadastrado.setVisible(false);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        txTitulo.setText("");
-        txAutor.setText("");
-        txPaginas.setText("");
-        txYear.setText("");
-        txEdition.setText("");
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        txtPaginas.setText("");
+        txtYear.setText("");
+        txtEdition.setText("");
         this.setVisible(false);
         TelaPrincipal.getInstance(TelaPrincipal.current_cred).setVisible(true);
     }//GEN-LAST:event_formWindowClosing
-
-    private void txPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPaginasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txPaginasActionPerformed
-
-    private void txYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txYearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txYearActionPerformed
-
-    private void txEditionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txEditionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txEditionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,15 +301,17 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JLabel lblCadastrado;
     private javax.swing.JLabel lblEdition;
+    private javax.swing.JLabel lblIncorreto;
     private javax.swing.JLabel lblPage;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblYear;
-    private javax.swing.JTextField txAutor;
-    private javax.swing.JTextField txEdition;
-    private javax.swing.JTextField txPaginas;
-    private javax.swing.JTextField txTitulo;
-    private javax.swing.JTextField txYear;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtEdition;
+    private javax.swing.JTextField txtPaginas;
+    private javax.swing.JTextField txtTitulo;
+    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
